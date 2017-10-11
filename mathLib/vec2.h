@@ -32,10 +32,10 @@ vec2 operator/(const vec2 &lhs, const vec2 &rhs);
 vec2 operator-(const vec2 &rhs);
 
 // compund assignment operators
-vec2 &operator+=(const vec2 &lhs, const vec2 &rhs);
-vec2 &operator-=(const vec2 &lhs, const vec2 &rhs);
-vec2 &operator*=(const vec2 &lhs, float rhs);
-vec2 &operator/=(const vec2 &lhs, float rhs);
+vec2 &operator+=(vec2 &lhs, const vec2 &rhs);
+vec2 &operator-=(vec2 &lhs, const vec2 &rhs);
+vec2 &operator*=(vec2 &lhs, float rhs);
+vec2 &operator/=(vec2 &lhs, float rhs);
 
 // logical operator
 bool operator==(const vec2 &lhs, const vec2 &rhs);

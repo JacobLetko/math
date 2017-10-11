@@ -41,25 +41,27 @@ vec2 operator-(const vec2 & rhs)
 }
 
 
-vec2 & operator+=(const vec2 & lhs, const vec2 & rhs)
+vec2 & operator+=(vec2 & lhs, const vec2 & rhs)
 {
-	return { lhs + rhs };
+	// vecA += vecB
+	lhs = lhs + rhs;
+	return lhs;
 }
-vec2 & operator-=(const vec2 & lhs, const vec2 & rhs)
+vec2 & operator-=(vec2 & lhs, const vec2 & rhs)
 {
-	return { lhs - rhs };
+	lhs = lhs - rhs;
+	return lhs;
 }
-vec2 & operator*=(const vec2 & lhs, float rhs)
+vec2 & operator*=(vec2 & lhs, float rhs)
 {
-	return { lhs * rhs };
+	lhs = lhs * rhs;
+	return lhs;
 }
-vec2 & operator/=(const vec2 & lhs, float rhs)
+vec2 & operator/=(vec2 & lhs, float rhs)
 {
-	vec2 temp;
-	temp.x = lhs.x / rhs;
-	temp.y = lhs.y / rhs;
-	
-	return temp;
+	lhs.x = lhs.x / rhs;
+	lhs.y = lhs.y / rhs;
+	return lhs;
 }
 
 
@@ -138,11 +140,11 @@ vec2 lerp(const vec2 & s, const vec2 & e, float a)
 }
 vec2 min(const vec2 & a, const vec2 & b)
 {
-	return{min(a.x, b.x) , min(a.y, b.y)};
+	return{fmin(a.x, b.x) , fmin(a.y, b.y)};
 }
 vec2 max(const vec2 & a, const vec2 & b)
 {
-	return{ max(a.x, b.x) , max(a.y, b.y) };
+	return{ fmax(a.x, b.x) , fmax(a.y, b.y) };
 }
 
 
