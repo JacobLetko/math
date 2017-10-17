@@ -1,7 +1,7 @@
 #pragma once
 
-int min(int x, int y);
-int max(int x, int y);
+unsigned min(unsigned x, unsigned y);
+unsigned max(unsigned x, unsigned y);
 
 int powerOf(int base, int exponent);
 

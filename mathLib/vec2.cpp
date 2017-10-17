@@ -2,7 +2,6 @@
 #include <cfloat>
 
 #include "vec2.h"
-#include "mathutils.h"
 
 
 float vec2::operator[](unsigned idx)
@@ -31,9 +30,9 @@ vec2 operator*(float lhs, const vec2 &rhs)
 {
 	return{ lhs * rhs.x, lhs * rhs.y };
 }
-vec2 operator/(const vec2 & lhs, const vec2 &rhs)
+vec2 operator/(const vec2 & lhs, float &rhs)
 {
-	return { lhs.x / rhs.x, lhs.y / rhs.y };
+	return { lhs.x / rhs, lhs.y / rhs };
 }
 vec2 operator-(const vec2 & rhs)
 {
@@ -59,8 +58,7 @@ vec2 & operator*=(vec2 & lhs, float rhs)
 }
 vec2 & operator/=(vec2 & lhs, float rhs)
 {
-	lhs.x = lhs.x / rhs;
-	lhs.y = lhs.y / rhs;
+	lhs = lhs / rhs;
 	return lhs;
 }
 
@@ -116,7 +114,7 @@ vec2 norm(const vec2 & v)
 
 	return temp;
 }
-vec2 normalize(vec2 & v)
+vec2 &normalize(vec2 & v)
 {
 	v = norm(v);
 

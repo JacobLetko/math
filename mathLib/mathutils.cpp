@@ -1,13 +1,13 @@
 #include "mathutils.h"
 #include <random>
 
-int min(int x, int y)
+unsigned min(unsigned x, unsigned y)
 {
 	// if x < y return x else return y
 	return x < y ? x : y;
 }
 
-int max(int x, int y)
+unsigned max(unsigned x, unsigned y)
 {
 	// if x > y return x else return y
 	return x > y ? x : y;

@@ -6,10 +6,7 @@ union vec2
 	float v[2];
 
 	// accsess by individual
-	struct 
-	{
-		float x, y;
-	};
+	struct { float x, y; };
 
 	// subscript
 	float operator[](unsigned idx);
@@ -28,7 +25,7 @@ vec2 operator+(const vec2 &lhs, const vec2 &rhs);
 vec2 operator-(const vec2 &lhs, const vec2 &rhs);
 vec2 operator*(const vec2 &lhs, float rhs);
 vec2 operator*(float lhs, const vec2 &rhs);
-vec2 operator/(const vec2 &lhs, const vec2 &rhs);
+vec2 operator/(const vec2 &lhs,float &rhs);
 vec2 operator-(const vec2 &rhs);
 
 // compund assignment operators
@@ -43,7 +40,7 @@ bool operator!=(const vec2 &lhs, const vec2 &rhs);
 
 float mag(const vec2 &v);
 vec2 norm(const vec2 &v);
-vec2 normalize(vec2 &v);
+vec2 &normalize(vec2 &v);
 float dot(const vec2 &a, const vec2 &b);
 float dist(const vec2 &a, const vec2 &b);
 vec2 perp(const vec2 &v);
