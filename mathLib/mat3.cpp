@@ -1,4 +1,5 @@
 #include "mat3.h"
+#include "vec3.h"
 
 #include <cmath>
 
@@ -75,19 +76,24 @@ mat3 transpose(const mat3 & A)
 	mat3 temp;
 	for (int i = 0; i < 3; ++i)
 		for (int k = 0; k < 3; ++k)
-			temp[i][k] = A[i][k];
+			temp[i][k] = A[k][i];
 	
 	return temp;
 }
 
 float determinant(const mat3 & A)
 {
-	return 0.0f;
+	return dot(A[0], cross(A[1], A[2]));
 }
 
 mat3 inverse(const mat3 & A)
 {
-	return mat3();
+	float di = 1 / determinant(A);
+
+	return transpose(mat3{
+		cross(A[1], A[2]) * di,
+		cross(A[2], A[0]) * di,
+		cross(A[0], A[1]) * di });
 }
 
 mat3 translate(const vec2 & t)
@@ -107,7 +113,7 @@ mat3 scale(const vec2 & s)
 mat3 rotate(float deg)
 {
 	float rad = deg * 0.0174533;
-	return mat3{ cos(rad), -sin(rad), 0,
-				 sin(rad), cos(rad), 0,
+	return mat3{ cos(rad), sin(rad), 0,
+				 -sin(rad), cos(rad), 0,
 				 0, 0, 1 };
 }

@@ -5,10 +5,11 @@
 
 union mat3
 {
+	vec3 c[3];
 	float m[9];
 	float mm[3][3]; // col[y] row[x]
 
-	vec3 c[3];
+	
 
 	vec3 &operator[](unsigned idx);
 	const vec3 &operator[](unsigned idx) const;

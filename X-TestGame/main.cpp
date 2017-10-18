@@ -12,6 +12,8 @@
 int main()
 {
 	sfw::initContext();
+
+	sfw::setBackgroundColor(BLACK);
 	
 	srand(time(NULL()));
 	
@@ -30,13 +32,27 @@ int main()
 	}
 
 	Trnsform myTransform;
-	myTransform.position = vec2{ 300, 400 };
+	myTransform.position = vec2{ 400, 300 };
 	myTransform.dimension = vec2{ 1,1 };
+	myTransform.angle = 0;
+
+	Trnsform mybaby;
+	mybaby.position = vec2{ 15, 15 };
+	mybaby.dimension = vec2{ 1,1 };
+	mybaby.angle = 0;
+	mybaby.e_parent = &myTransform;
 
 	while (sfw::stepContext())
 	{
-		myTransform.angle += sfw::getDeltaTime();
-		drawMatrix(myTransform.getLocalTransform(), 40);
+		float t = sfw::getTime();
+
+		myTransform.angle += sfw::getDeltaTime() * 360;
+		//myTransform.dimension = vec2{ sinf(t) + 2, sinf(t) + 2 };
+
+		mybaby.angle += sfw::getDeltaTime() * -360;
+
+		drawMatrix(myTransform.getGlobalTransform(), 40);
+		drawMatrix(mybaby.getGlobalTransform(), 30);
 	}
 
 	sfw::termContext();
