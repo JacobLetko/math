@@ -1,5 +1,8 @@
 #pragma once
 
+
+#define EPSILON 0.0001
+
 unsigned min(unsigned x, unsigned y);
 unsigned max(unsigned x, unsigned y);
 

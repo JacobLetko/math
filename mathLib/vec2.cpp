@@ -2,6 +2,7 @@
 #include <cfloat>
 
 #include "vec2.h"
+#include "mathutils.h"
 
 
 float vec2::operator[](unsigned idx)
@@ -76,7 +77,7 @@ bool operator==(const vec2 & lhs, const vec2 & rhs)
 	for (int i = 0; i < qty; ++i)
 	{
 		// is the discrepancy within acceptable limits?
-		if (std::abs(lhs.v[i] - rhs.v[i]) < FLT_EPSILON)
+		if (std::abs(lhs.v[i] - rhs.v[i]) < EPSILON)
 		{
 			return false;
 		}
@@ -90,7 +91,7 @@ bool operator!=(const vec2 & lhs, const vec2 & rhs)
 
 	for (int i = 0; i < qty; i++)
 	{
-		if (std::abs(lhs.v[i] - rhs.v[i]) < FLT_EPSILON)
+		if (std::abs(lhs.v[i] - rhs.v[i]) < EPSILON)
 		{
 			return true;
 		}

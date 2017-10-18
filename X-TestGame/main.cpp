@@ -4,6 +4,8 @@
 #include "sfwdraw.h"
 #include "mathutils.h"
 #include "vec2.h"
+#include "mat3.h"
+#include "transform.h"
 
 #include "player.h"
 
@@ -27,10 +29,14 @@ int main()
 		p1.teleportTimer = 0;
 	}
 
+	Trnsform myTransform;
+	myTransform.position = vec2{ 300, 400 };
+	myTransform.dimension = vec2{ 1,1 };
+
 	while (sfw::stepContext())
 	{
-		p1.update();
-		p1.draw();
+		myTransform.angle += sfw::getDeltaTime();
+		drawMatrix(myTransform.getLocalTransform(), 40);
 	}
 
 	sfw::termContext();
