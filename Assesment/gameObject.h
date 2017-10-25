@@ -15,6 +15,7 @@ public:
 	int length;
 	int width;
 	int rad;
+	int speed;
 
 	GameObject();
 
@@ -22,4 +23,4 @@ public:
 	mat3 getGlobalTransform();
 };
 
-void DrawMatrix(const mat3 &t, float drawing_scale);
+void DrawMatrix(const mat3 &t, float drawing_scale, bool enabled);

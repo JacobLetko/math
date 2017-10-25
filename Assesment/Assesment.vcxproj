@@ -119,11 +119,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bullets.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tank.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bullets.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="tank.h" />
   </ItemGroup>

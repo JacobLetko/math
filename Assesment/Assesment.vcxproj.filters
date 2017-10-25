@@ -24,12 +24,18 @@
     <ClCompile Include="tank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bullets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bullets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,14 +2,16 @@
 
 #include "gameObject.h"
 
-class Tank : GameObject
+class Tank : public GameObject
 {
 public:
 
 	char up;
 	char down;
-	char left;
-	char right;
+	char tRight;
+	char tLeft;
+	char boost;
+	char shoot;
 
 	void update();
 };
