@@ -31,7 +31,7 @@ vec2 operator*(float lhs, const vec2 &rhs)
 {
 	return{ lhs * rhs.x, lhs * rhs.y };
 }
-vec2 operator/(const vec2 & lhs, float &rhs)
+vec2 operator/(const vec2 & lhs, float rhs)
 {
 	return { lhs.x / rhs, lhs.y / rhs };
 }
@@ -144,6 +144,16 @@ vec2 min(const vec2 & a, const vec2 & b)
 vec2 max(const vec2 & a, const vec2 & b)
 {
 	return{ fmax(a.x, b.x) , fmax(a.y, b.y) };
+}
+
+vec2 project(const vec2 & v, const vec2 & axis)
+{
+	return dot(v, axis) * axis;
+}
+
+vec2 reflect(const vec2 & v, const vec2 & axis)
+{
+	return 2 * project(v,axis) - v;
 }
 
 

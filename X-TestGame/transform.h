@@ -2,18 +2,20 @@
 #include "vec2.h"
 #include "mat3.h"
 
-class Trnsform
+class Transform
 {
 public:
-	vec2 position;
-	vec2 dimension;
-	float angle;
-	Trnsform *e_parent;
+	vec2       position;
+	vec2       dimension;
+	float      angle;
+	Transform *e_parent;
 
-	Trnsform();
+
+	Transform(vec2 a_pos = { 0,0 }, vec2 a_dim = { 1,1 }, float a_ang = 0);
 
 	mat3 getLocalTransform() const;
 	mat3 getGlobalTransform() const;
 };
 
-void drawMatrix(const mat3 &t, float drawing_scale);
+void DrawMatrix(const mat3 &t, float drawing_scale);
+void DrawTexture(unsigned sprite, const mat3 &t);

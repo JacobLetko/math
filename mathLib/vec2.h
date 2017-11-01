@@ -25,7 +25,7 @@ vec2 operator+(const vec2 &lhs, const vec2 &rhs);
 vec2 operator-(const vec2 &lhs, const vec2 &rhs);
 vec2 operator*(const vec2 &lhs, float rhs);
 vec2 operator*(float lhs, const vec2 &rhs);
-vec2 operator/(const vec2 &lhs,float &rhs);
+vec2 operator/(const vec2 &lhs,float rhs);
 vec2 operator-(const vec2 &rhs);
 
 // compund assignment operators
@@ -47,3 +47,6 @@ vec2 perp(const vec2 &v);
 vec2 lerp(const vec2 &s, const vec2 &e, float a);
 vec2 min(const vec2 &a, const vec2 &b);
 vec2 max(const vec2 &a, const vec2 &b);
+
+vec2 project(const vec2 &v, const vec2 &axis);
+vec2 reflect(const vec2 &v, const vec2 &axis);
