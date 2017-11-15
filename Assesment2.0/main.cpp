@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "sfwdraw.h"
-
 #include "GameObject.h"
 
 int main()
@@ -10,21 +9,25 @@ int main()
 
 	sfw::setBackgroundColor(BLACK);
 
+
 	Ball ball;
 	Player player;
 	Wall top;
 	Wall left;
 	Wall right;
+	Brick bricks[10];
 
 	void ballsetup();
 	{
 		
 		ball.transform.position = { 375, 200 };
 
-		ball.sprite = sfw::loadTextureMap("../Resources/Ball.jpg");
+		ball.sprite = sfw::loadTextureMap("Resources/Ball.png");
 
 		ball.transform.dimension = vec2{ 10, 10 };
 		ball.collider.box.extents = { .5, .5 };
+		ball.rigidbody.force = { 10 , -100 };
+		ball.rigidbody.drag = 0;
 	}
 
 	void wallSetup();
@@ -46,10 +49,36 @@ int main()
 	{
 		player.transform.position = { 375, 50 };
 		
-		player.sprite = sfw::loadTextureMap("../Resources/Player.jpg");
-		player.transform.dimension = vec2{ 100, 10 };
+		player.sprite = sfw::loadTextureMap("Resources/Player.png");
+
+		player.transform.dimension = vec2{ 50, 10 };
 		player.collider.box.extents = { .5,.5 };
 
+	}
+
+	void brickSetup();
+	{
+		vec2 start = { 400, 200 };
+		float BlockMoveX = 45;
+		float BlockMoveY = 400;
+		bricks[1].transform.position = start;
+		bricks[1].transform.dimension = {20, 20};
+		bricks[1].enabled = true;
+		bricks[1].life = 1;
+
+		for (int i = 0; i < 10; i++)
+		{
+			bricks[i].transform.position = { BlockMoveX, BlockMoveY };
+			bricks[i].transform.dimension = vec2{ 25,10 };
+			bricks[i].collider.box.extents = { .5,.5 };
+			bricks[i].enabled = true;
+			bricks[i].life = 1;
+
+			bricks[i].s1 = sfw::loadTextureMap("Resources/Block_1.png");
+			bricks[i].s2 = sfw::loadTextureMap("Resources/Block_2.png");
+			bricks[i].s3 = sfw::loadTextureMap("Resources/Block_3.png");
+			BlockMoveX += 45;
+		}
 	}
 
 	while (sfw::stepContext())
@@ -57,27 +86,45 @@ int main()
 		float t = sfw::getTime();
 		float dt = sfw::getDeltaTime();
 
-		player.update();
-
 		ball.rigidbody.integrate(ball.transform, dt);
 		drawAABB(ball.collider.getGlobalBox(ball.transform), MAGENTA);
+		ball.sprite.draw(ball.transform);
 
+		player.update();
 		player.rigidbody.integrate(player.transform, dt);
 		drawAABB(player.collider.getGlobalBox(player.transform), GREEN);
-
-		top.rigidbody.integrate(top.transform, dt);
+		player.sprite.draw(player.transform);
+		
 		drawAABB(top.collider.getGlobalBox(top.transform), WHITE);
-
-		left.rigidbody.integrate(left.transform, dt);
 		drawAABB(left.collider.getGlobalBox(left.transform), WHITE);
-
-		right.rigidbody.integrate(right.transform, dt);
 		drawAABB(right.collider.getGlobalBox(right.transform), WHITE);
+
+		for (int i = 0; i < 10; i++)
+		{
+			if (bricks[i].enabled == true)
+			{
+				drawAABB(bricks[i].collider.getGlobalBox(bricks[i].transform), YELLOW);
+				
+				if (bricks[i].life = 1)
+					bricks[i].s1.draw(bricks[i].transform);
+				if (bricks[i].life = 2)
+					bricks[i].s2.draw(bricks[i].transform);
+				if (bricks[i].life = 3)
+					bricks[i].s3.draw(bricks[i].transform);
+				
+				doCollisioin(ball, bricks[i]);
+			}
+			
+		}
 
 		doCollision(player, ball);
 		doCollision(ball, top);
 		doCollision(ball, left);
 		doCollision(ball, right);
+
+		if (sfw::getKey('R') && ball.transform.position.y < 50)
+			ball.transform.position = { 200, 200 };
+		
 	}
 
 	sfw::termContext();

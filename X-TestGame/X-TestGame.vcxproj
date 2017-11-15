@@ -127,7 +127,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="DrawShape.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
@@ -137,7 +136,6 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="cursorChaser.h" />
-    <ClInclude Include="DrawShape.h" />
     <ClInclude Include="gameObject.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Rigidbody.h" />
