@@ -15,7 +15,7 @@ int main()
 	Wall top;
 	Wall left;
 	Wall right;
-	Brick bricks[10];
+	Brick bricks[15];
 
 	void ballsetup();
 	{
@@ -58,15 +58,10 @@ int main()
 
 	void brickSetup();
 	{
-		vec2 start = { 400, 200 };
-		float BlockMoveX = 45;
+		float BlockMoveX = 60;
 		float BlockMoveY = 400;
-		bricks[1].transform.position = start;
-		bricks[1].transform.dimension = {20, 20};
-		bricks[1].enabled = true;
-		bricks[1].life = 1;
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			bricks[i].transform.position = { BlockMoveX, BlockMoveY };
 			bricks[i].transform.dimension = vec2{ 25,10 };
@@ -99,7 +94,7 @@ int main()
 		drawAABB(left.collider.getGlobalBox(left.transform), WHITE);
 		drawAABB(right.collider.getGlobalBox(right.transform), WHITE);
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			if (bricks[i].enabled == true)
 			{
@@ -112,7 +107,10 @@ int main()
 				if (bricks[i].life = 3)
 					bricks[i].s3.draw(bricks[i].transform);
 				
-				doCollisioin(ball, bricks[i]);
+				bool die = doCollisioin(ball, bricks[i]);
+				if (die == true)
+					bricks[i].life -= 1;
+				bricks[i].update();
 			}
 			
 		}

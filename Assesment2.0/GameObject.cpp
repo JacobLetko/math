@@ -14,22 +14,15 @@ void Player::update()
 	}
 }
 
-bool doCollision(Player &player, const Wall &wall)
+void Brick::update()
 {
-	auto hit = collides(player.transform, player.collider,
-		wall.transform, wall.collider);
-
-	if (hit.penetrationDepth > 0)
-	{
-		static_resolution(player.transform.position, player.rigidbody.velocity, hit);
-		return true;
-	}
-	return false;
+	if (life == 0)
+		enabled = false;
 }
 
 bool doCollision(Ball &ball, const Wall &wall)
 {
-	auto hit = collides(ball.transform, ball.collider,
+	Collision hit = collides(ball.transform, ball.collider,
 		wall.transform, wall.collider);
 
 	if (hit.penetrationDepth > 0)
@@ -58,16 +51,16 @@ void doCollision(Player &player, Ball &ball)
 	
 }
 
-void doCollisioin(Ball & ball, Brick & brick)
+bool doCollisioin(Ball & ball, Brick & brick)
 {
-	auto hit = collides(ball.transform, ball.collider,
+	Collision hit = collides(ball.transform, ball.collider,
 		brick.transform, brick.collider);
 
 	if (hit.penetrationDepth > 0)
 	{
 		static_resolution(ball.transform.position, ball.rigidbody.velocity, hit);
-		brick.life--;
-		if (brick.life == 0)
-			brick.enabled = false;
+		return true;
 	}
+
+	return false;
 }
