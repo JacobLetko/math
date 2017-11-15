@@ -26,7 +26,7 @@ int main()
 
 		ball.transform.dimension = vec2{ 10, 10 };
 		ball.collider.box.extents = { .5, .5 };
-		ball.rigidbody.force = { 10 , -100 };
+		ball.rigidbody.force = { -10 , -100 };
 		ball.rigidbody.drag = 0;
 	}
 
@@ -67,7 +67,7 @@ int main()
 			bricks[i].transform.dimension = vec2{ 25,10 };
 			bricks[i].collider.box.extents = { .5,.5 };
 			bricks[i].enabled = true;
-			bricks[i].life = 1;
+			bricks[i].life = 3;
 
 			bricks[i].s1 = sfw::loadTextureMap("Resources/Block_1.png");
 			bricks[i].s2 = sfw::loadTextureMap("Resources/Block_2.png");
@@ -100,11 +100,11 @@ int main()
 			{
 				drawAABB(bricks[i].collider.getGlobalBox(bricks[i].transform), YELLOW);
 				
-				if (bricks[i].life = 1)
+				if (bricks[i].life == 1)
 					bricks[i].s1.draw(bricks[i].transform);
-				if (bricks[i].life = 2)
+				if (bricks[i].life == 2)
 					bricks[i].s2.draw(bricks[i].transform);
-				if (bricks[i].life = 3)
+				if (bricks[i].life == 3)
 					bricks[i].s3.draw(bricks[i].transform);
 				
 				bool die = doCollisioin(ball, bricks[i]);
